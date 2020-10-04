@@ -6,15 +6,22 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:24:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/04 15:28:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/04 17:02:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo_one.h"
 
-int main(int ac, char **av)
+int main(const int ac, const char **av)
 {
-	(void)ac;
-	(void)av;
-	ft_printf("ok\n");
+	t_simulation simulation;
+	
+	if (ac < 4 || ac > 5)
+		return (0);
+	simulation = create_simulation(ac, av);
+
+	run_simulation(simulation);
+
+	destroy_simulation(simulation);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:37:51 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/05 10:00:15 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/05 18:31:43 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,43 @@
 
 t_simulation	create_simulation(const int ac, const char **av)
 {
-	t_simulation result;
+	t_simulation	result;
+	int				i;
 
 	result.nb_philosophers = ft_atoi(av[1]);
 	result.time_to_die = ft_atoi(av[2]);
 	result.time_to_eat = ft_atoi(av[3]);
 	result.time_to_sleep = ft_atoi(av[4]);
-	result.nb_time_each_philosophers_must_eat = ac == 5 ? ft_atoi(av[5]) : -1;
-	
+	result.nb_time_each_philosophers_must_eat = ac == 6 ? ft_atoi(av[5]) : -1;
+	if (!(result.philos = malloc(sizeof(t_philo *) * result.nb_philosophers)))
+		result.philos = NULL;
+	if (!(result.forks = malloc(sizeof(pthread_mutex_t) * result.nb_philosophers)))
+		result.forks = NULL;
+	i = -1;
+	while (++i < result.nb_philosophers)
+	{
+		pthread_mutex_init(&result.forks[i], NULL);
+		result.philos[i] = malloc_philo(i,
+				i > 0 ? &result.forks[i - 1] : NULL, &result.forks[i]);
+	}
+	if (result.nb_philosophers > 1)
+		result.philos[0]->left_fork =
+			result.philos[result.nb_philosophers - 1]->right_fork;
 	return (result);
 }
 
 void			destroy_simulation(t_simulation to_destroy)
 {
-	(void)to_destroy;
-}
-
-void			*philo_happy(void *philo)
-{
-	(void)philo;
-	return (NULL);
-}
-
-
-
-void			run_simulation(void)
-{
-	t_philo		philos[g_simu.nb_philosophers];
 	int i;
-	int ret;
 
 	i = -1;
-	while (++i < g_simu.nb_philosophers)
+	while(++i < to_destroy.nb_philosophers)
 	{
-		create_philo(i);
-		ret = pthread_create(&philos[i].thread, NULL, philo_happy, &philos[i]);
-		if (ret != 0)
-			ft_printf("Error : philo nb -> %d", i + 1);
+		free_philo(to_destroy.philos[i]);
+		pthread_mutex_destroy(&to_destroy.forks[i]);
 	}
-	while (42)
-		;
-
-	i = -1;
-	while (++i < g_simu.nb_philosophers)
-		pthread_join(&(philos[i].thread), NULL);
+	if (to_destroy.philos != NULL)
+		free(to_destroy.philos);
+	if (to_destroy.forks != NULL)
+		free(to_destroy.forks);
 }

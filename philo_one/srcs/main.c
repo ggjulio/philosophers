@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:24:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/05 09:53:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/05 17:54:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 t_simulation	g_simu;
 
-int main(const int ac, const char **av)
+int		main(const int ac, const char **av)
 {
-	t_simulation simulation;
-
-	if (ac < 4 || ac > 5)
+	(void)av;
+	if (ac < 5 || ac > 6)
+	{
+		ft_printf("bad args bitch\n");
 		return (0);
+	}
 	g_simu = create_simulation(ac, av);
 	run_simulation();
-	destroy_simulation(simulation);
+	destroy_simulation(g_simu);
 	return (0);
 }

@@ -61,7 +61,7 @@ LIB_DIR = $(shell find ../lib -maxdepth 1 -type d)
 INC =
 vpath %.h $(INC_DIR)
 
-SRC = main.c simulation.c philo.c
+SRC = main.c simulation.c philo.c run_simulation.c
 
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRCS_DIR)

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/04 18:14:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/05 09:52:20 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,34 @@ typedef	enum	e_action
 
 typedef struct	s_philo
 {
-	int			id;
-	t_action	action;
-	pthread_t	thread;
-	
+	int				id;
+	t_action		action;
+	pthread_t		thread;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }				t_philo;
 
 typedef struct	s_simulation
 {
-	int			nb_philosophers;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int 		nb_time_each_philosophers_must_eat;
-	t_philo		*philos;
+	int				nb_philosophers;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int 			nb_time_each_philosophers_must_eat;
+	t_philo			*philos;
+	pthread_mutex_t	*forks;
 }				t_simulation;
 
 t_simulation	create_simulation(const int ac, const char **av);
 void			destroy_simulation(t_simulation to_destroy);
-void			run_simulation(t_simulation to_run);
+void			run_simulation(void);
 
 t_philo			create_philo(int id);
 t_philo*		malloc_philo(int id);
 void			destroy_philo(t_philo to_destroy);
 void			free_philo(t_philo *to_free);
+
+
+extern t_simulation g_simu;
 
 #endif

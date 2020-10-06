@@ -6,25 +6,64 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/05 18:46:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 15:25:22 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+int		exit_not_yet(void)
+{
+	int i;
+
+	i = -1;
+	if (g_simu.nb_time_each_philosophers_must_eat == -1)
+		return (1);
+	while (++i < g_simu.nb_philosophers)
+		if (g_simu.philos[i]->nb_meal < g_simu.nb_time_each_philosophers_must_eat)
+			return (1);
+	return (0);
+}
+
+
 
 void			*philo_happy(void *p_philo)
 {
 	t_philo *philo;
 
 	philo = p_philo;
-	while (42)
+	while (exit_not_yet())
 	{
-		ft_printf("%d\n", philo->id);
+		philo_eat(philo);
+		philo_sleep(philo);
+		philo_think(philo);
 	}
 	return (NULL);
 }
 
+void			print_summary()
+{
+	int i;
 
+	i = -1;
+	ft_printf("\n\nSummary :\n\n");
+	while (++i < g_simu.nb_philosophers)
+	{
+		ft_printf("philo %d -> meals : %d\n", g_simu.philos[i]->id,  g_simu.philos[i]->nb_meal);
+	}
+}
+
+void			check_dead_philosophers(void)
+{
+	int i;
+
+	i = -1;
+	while (++i < g_simu.nb_philosophers)
+	{
+		if (g_simu.time_to_die)
+			g_simu.philos[i]->action = Action_Died;
+	}
+}
 
 void			run_simulation(void)
 {
@@ -38,10 +77,10 @@ void			run_simulation(void)
 		if (ret != 0)
 			ft_printf("Error : philo nb -> %d", i + 1);
 	}
-	while (42)
-		;
-
+	while (exit_not_yet())
+	;//	check_dead_philosophers();
 	i = -1;
-	// while (++i < g_simu.nb_philosophers)
-	// 	pthread_join(g_simu.philos[i]->thread, NULL);
+	while (++i < g_simu.nb_philosophers)
+		pthread_join(g_simu.philos[i]->thread, NULL);
+	print_summary();
 }

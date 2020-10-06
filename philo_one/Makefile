@@ -5,7 +5,7 @@ _UNDERLINE =\e[4m
 _BLINK     =\e[5m
 _REVERSE   =\e[7m
 _HIDDEN    =\e[8m
-
+@
 # RESET list
 _R          =\e[0m
 _RBOLD      =\e[21m
@@ -61,7 +61,8 @@ LIB_DIR = $(shell find ../lib -maxdepth 1 -type d)
 INC =
 vpath %.h $(INC_DIR)
 
-SRC = main.c simulation.c philo.c run_simulation.c
+SRC = main.c simulation.c philo.c run_simulation.c philo_action.c
+SRC+= helper_time.c
 
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRCS_DIR)

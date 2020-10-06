@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:37:51 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/05 18:31:43 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 15:18:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_simulation	create_simulation(const int ac, const char **av)
 	if (result.nb_philosophers > 1)
 		result.philos[0]->left_fork =
 			result.philos[result.nb_philosophers - 1]->right_fork;
+	gettimeofday(&(result.start_time), NULL);
 	return (result);
 }
 

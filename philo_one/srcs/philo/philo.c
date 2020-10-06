@@ -6,11 +6,22 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/05 18:38:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 14:17:29 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
+static char	*assign_color(void)
+{
+	static int	i = 0;
+	const char	str[10][10] = {_RED, _GREEN, _YELLOW, _BLUE, _MAGENTA,
+								_CYAN, _WHITE};
+
+	if (i > 6)
+		return (NULL);
+	return (ft_strdup(str[i++]));	
+}
 
 t_philo		create_philo(int id, pthread_mutex_t *left_fork,
 				pthread_mutex_t *right_fork)
@@ -20,6 +31,7 @@ t_philo		create_philo(int id, pthread_mutex_t *left_fork,
 	memset(&result, 0, sizeof(t_philo));
 	result.id = id;
 	result.nb_meal = 0;
+	result.color = assign_color();
 	result.action = Action_None;
 	result.left_fork = left_fork;
 	result.right_fork = right_fork;
@@ -39,7 +51,8 @@ t_philo		*malloc_philo(int id, pthread_mutex_t *left_fork,
 
 void		destroy_philo(t_philo to_destroy)
 {
-	(void)to_destroy;
+	if (to_destroy.color)
+		free(to_destroy.color);
 }
 
 void		free_philo(t_philo *to_free)

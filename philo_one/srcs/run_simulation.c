@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 15:25:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 17:48:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ int		exit_not_yet(void)
 	if (g_simu.nb_time_each_philosophers_must_eat == -1)
 		return (1);
 	while (++i < g_simu.nb_philosophers)
+	{
+		if (g_simu.philos[i]->action == Action_Died)
+			return (0);
 		if (g_simu.philos[i]->nb_meal < g_simu.nb_time_each_philosophers_must_eat)
 			return (1);
+	}
 	return (0);
 }
 
@@ -78,7 +82,7 @@ void			run_simulation(void)
 			ft_printf("Error : philo nb -> %d", i + 1);
 	}
 	while (exit_not_yet())
-	;//	check_dead_philosophers();
+		check_dead_philosophers();
 	i = -1;
 	while (++i < g_simu.nb_philosophers)
 		pthread_join(g_simu.philos[i]->thread, NULL);

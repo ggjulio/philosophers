@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:27:38 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 16:35:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:23:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,44 @@
 /*
 ** Colors
 */
-# define _RED      	"\e[91m"
-# define _GREEN   	"\e[92m"
-# define _YELLOW  	"\e[93m"
-# define _BLUE    	"\e[94m"
-# define _MAGENTA 	"\e[35m"
-# define _CYAN    	"\e[96m"
-# define _WHITE   	"\e[97m"
+# define _COLOR_DEFAULT	"\e[39m"
+# define _BLACK			"\e[30m"
+# define _RED			"\e[31m"
+# define _GREEN			"\e[32m"
+# define _YELLOW		"\e[33m"
+# define _BLUE			"\e[34m"
+# define _MAGENTA		"\e[35m"
+# define _CYAN			"\e[36m"
+# define _LIGHT_GREY	"\e[37m"
+# define _DARK_GREY		"\e[90m"
+# define _LIGHT_RED    	"\e[91m"
+# define _LIGHT_GREEN  	"\e[92m"
+# define _LIGHT_YELLOW 	"\e[93m"
+# define _LIGHT_BLUE   	"\e[94m"
+# define _LIGHT_MAGENTA	"\e[35m"
+# define _LIGHT_CYAN   	"\e[96m"
+# define _WHITE		 	"\e[97m"
 
-# define _DARK_GREY	"\e[97m"
 
 /*
 ** Inverted, i.e. colored backgrounds
 */
-# define _IRED     	"\e[101m"
-# define _IGREEN   	"\e[102m"
-# define _IYELLOW  	"\e[103m"
-# define _IBLUE    	"\e[104m"
-# define _IMAGENTA 	"\e[45m"
-# define _ICYAN    	"\e[106m"
-# define _IWHITE   	"\e[107m"
+# define _IBLACK			"\e[40m"
+# define _IRED				"\e[41m"
+# define _IGREEN			"\e[42m"
+# define _IYELLOW			"\e[43m"
+# define _IBLUE				"\e[44m"
+# define _IMAGENTA			"\e[45m"
+# define _ICYAN				"\e[46m"
+# define _ILIGHT_GREY		"\e[47m"
+# define _IDARK_GREY		"\e[100m"
+
+# define _ILIGHT_RED		"\e[101m"
+# define _ILIGHT_GREEN   	"\e[102m"
+# define _ILIGHT_YELLOW  	"\e[103m"
+# define _ILIGHT_BLUE    	"\e[104m"
+# define _ILIGHT_MAGENTA	"\e[45m"
+# define _ILIGHT_CYAN    	"\e[106m"
+# define _ILIGHT_WHITE   	"\e[107m"
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 14:17:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 18:29:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 static char	*assign_color(void)
 {
 	static int	i = 0;
-	const char	str[10][10] = {_RED, _GREEN, _YELLOW, _BLUE, _MAGENTA,
-								_CYAN, _WHITE};
+	const char	str[13][10] = {_LIGHT_RED, _LIGHT_GREEN, _LIGHT_YELLOW,
+			_LIGHT_BLUE, _LIGHT_MAGENTA, _LIGHT_CYAN, _DARK_GREY, _CYAN,
+			_MAGENTA, _BLUE, _YELLOW, _GREEN, _RED};
 
-	if (i > 6)
-		return (NULL);
-	return (ft_strdup(str[i++]));	
+	if (i < 13)
+		return (ft_strdup(str[i++]));	
+	return (ft_strdup(_COLOR_DEFAULT));
 }
 
 t_philo		create_philo(int id, pthread_mutex_t *left_fork,

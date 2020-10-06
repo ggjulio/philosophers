@@ -5,7 +5,7 @@ _UNDERLINE =\e[4m
 _BLINK     =\e[5m
 _REVERSE   =\e[7m
 _HIDDEN    =\e[8m
-@
+
 # RESET list
 _R          =\e[0m
 _RBOLD      =\e[21m

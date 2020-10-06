@@ -70,7 +70,7 @@ vpath %.c $(SRCS_DIR)
 LFLAGS = $(foreach lib, $(LIB_DIR),-L$(lib))  $(foreach lib, $(LIB),-l$(lib))
 
 CC = clang
-CFLAGS  = -Wall -Wextra -Werror -g -fsanitize=address  -fsanitize=undefined -fstack-protector  
+CFLAGS  = -Wall -Wextra -Werror -g #-fsanitize=address  -fsanitize=undefined -fstack-protector  
 IFLAGS  = $(foreach inc, $(INC_DIR),-I$(inc))
 
 #OS specific
@@ -79,7 +79,7 @@ ifeq ($(UNAME), Darwin)
 	CFLAGS += -D DARWIN
 else
 	#Linus and others...
-	CFLAGS += -D LINUX
+	CFLAGS += -D LINUX -pthread
 endif
 
 all: install $(NAME)

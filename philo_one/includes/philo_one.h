@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 21:34:44 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 23:32:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct	s_simulation
 	struct timeval	start_time;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
+
+	int died;
 }				t_simulation;
 
 /*
@@ -80,6 +82,7 @@ void			philo_think(t_philo *philo);
 ** helper_time.c
 */
 void			usleep_ms(uint64_t ms);
+uint64_t		get_ms_since(struct timeval start);
 uint64_t		get_ms_since_start(void);
 
 /*

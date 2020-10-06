@@ -6,24 +6,29 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:24:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 15:25:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 21:52:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-void	usleep_ms(uint64_t ms)
+void		usleep_ms(uint64_t ms)
 {
 	usleep(ms * 1000);
 }
 
-uint64_t	get_ms_since_start(void)
+uint64_t	get_ms_since(struct timeval start)
 {
 	struct timeval	actual;
 	struct timeval	diff;
 
 	gettimeofday(&actual, NULL);
-	diff.tv_sec = actual.tv_sec - g_simu.start_time.tv_sec;
-	diff.tv_usec = actual.tv_usec - g_simu.start_time.tv_usec;
-	return ((diff.tv_sec * (uint64_t)1000) + (diff.tv_usec / 1000));
+	diff.tv_sec = actual.tv_sec - start.tv_sec;
+	diff.tv_usec = actual.tv_usec - start.tv_usec;
+	return ((diff.tv_sec * (uint64_t)1000) + (diff.tv_usec / 1000));	
+}
+
+uint64_t	get_ms_since_start(void)
+{
+	return (get_ms_since(g_simu.start_time));
 }

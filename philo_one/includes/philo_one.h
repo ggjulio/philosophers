@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 15:27:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 21:34:44 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
-
+# include <stdint.h>
 
 # include "color_shell.h"
 
@@ -37,7 +37,7 @@ typedef struct	s_philo
 {
 	int				id;
 	int				nb_meal;
-	int				last_meal;
+	struct timeval	last_meal;
 	char			*color;
 	t_action		action;
 	pthread_t		thread;

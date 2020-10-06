@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 18:29:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/06 21:35:46 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_philo		create_philo(int id, pthread_mutex_t *left_fork,
 	result.action = Action_None;
 	result.left_fork = left_fork;
 	result.right_fork = right_fork;
+	gettimeofday(&(result.last_meal), NULL);
 	return (result);
 }
 

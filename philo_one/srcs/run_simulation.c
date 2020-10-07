@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 23:34:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/07 18:34:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int		exit_not_yet(void)
 	int i;
 
 	i = -1;
-	// if(g_simu.died)
-		// return (0);
+	if (g_simu.died)
+		return (0);
 	while (++i < g_simu.nb_philosophers)
 		if (g_simu.philos[i]->action == Action_Died)
 			return (0);
@@ -33,15 +33,11 @@ int		exit_not_yet(void)
 	return (0);
 }
 
-
-
 void			*philo_happy(void *p_philo)
 {
 	t_philo *philo;
 
 	philo = p_philo;
-	if (philo->id % 2)
-		usleep_ms(10);
 	while (exit_not_yet())
 	{
 		philo_eat(philo);
@@ -70,9 +66,9 @@ void			update_dead_philosophers(void)
 	i = -1;
 	while (++i < g_simu.nb_philosophers)
 	{
-		if (get_ms_since(g_simu.philos[i]->last_meal) >= (uint64_t)g_simu.time_to_die)
+		if (get_ms_since(g_simu.philos[i]->last_meal) > (uint64_t)g_simu.time_to_die)
 		{
-			ft_printf("%4lu %s%d died%s\n", get_ms_since_start(), g_simu.philos[i]->color, g_simu.philos[i]->id + 1, _R);
+			ft_printf("%4llu %s%d died%s\n", get_ms_since_start(), g_simu.philos[i]->color, g_simu.philos[i]->id + 1, _R);
 			g_simu.philos[i]->action = Action_Died;
 			g_simu.died = 1;
 		}
@@ -86,13 +82,24 @@ void			run_simulation(void)
 
 	g_simu.died = 0;
 
-	i = -1;
-	while (++i < g_simu.nb_philosophers)
+	i = 0;
+	while (i < g_simu.nb_philosophers)
 	{
 		ret = pthread_create(&g_simu.philos[i]->thread, NULL, philo_happy, g_simu.philos[i]);
 		if (ret != 0)
 			ft_printf("Error : philo nb -> %d", i + 1);
+		i += 2;
 	}
+	usleep_ms(3);
+	i = 1;
+	while (i < g_simu.nb_philosophers)
+	{
+		ret = pthread_create(&g_simu.philos[i]->thread, NULL, philo_happy, g_simu.philos[i]);
+		if (ret != 0)
+			ft_printf("Error : philo nb -> %d", i + 1);
+		i += 2;
+	}
+
 	while (exit_not_yet())
 		update_dead_philosophers();
 	i = -1;

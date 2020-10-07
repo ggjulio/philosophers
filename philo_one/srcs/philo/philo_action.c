@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:22:07 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 23:07:29 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/07 18:04:48 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,23 @@
 void	philo_sleep(t_philo *philo)
 {
 	philo->action = Action_Sleep;
-	ft_printf("%4lu %s%d is sleeping%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
+	if (!g_simu.died)
+		ft_printf("%4llu %s%d is sleeping%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
 	usleep_ms(g_simu.time_to_sleep);
 }
 
 void	philo_eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->left_fork);
-	ft_printf("%4lu %s%d has taken a fork%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
 	pthread_mutex_lock(philo->right_fork);
-	ft_printf("%4lu %s%d has taken a fork%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
+	if (!g_simu.died)
+		ft_printf("%4llu %s%d has taken a fork%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
+	pthread_mutex_lock(philo->left_fork);
+	if (!g_simu.died)
+		ft_printf("%4llu %s%d has taken a fork%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
 
 	philo->action = Action_Eat;
-	ft_printf("%4lu %s%d is eating%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
+	if (!g_simu.died)
+		ft_printf("%4llu %s%d is eating%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
 	usleep_ms(g_simu.time_to_eat);
 	gettimeofday(&(philo->last_meal), NULL);
 	philo->nb_meal++;
@@ -39,6 +43,6 @@ void	philo_eat(t_philo *philo)
 void	philo_think(t_philo *philo)
 {
 	philo->action = Action_Think;
-	ft_printf("%4lu %s%d is thinking%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
-
+	if (!g_simu.died)
+		ft_printf("%4llu %s%d is thinking%s\n", get_ms_since_start(), philo->color, philo->id + 1, _R);
 }

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/08 20:31:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/08 21:41:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct	s_simulation
 	struct timeval	start_time;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
-
 	int died;
 }				t_simulation;
 

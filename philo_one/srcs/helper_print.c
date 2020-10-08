@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/08 20:46:47 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/08 22:32:00 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void		print_message(t_philo *philo, char *message)
 	uint64_t	ms;
 
 	ms = get_ms_since_start();
-	do_padding(buffer, ms, 4);
+	do_padding(buffer, ms, 6);
 	putnbr(buffer + ft_strlen(buffer), ms);
 	ft_strcat(buffer, philo->color);
 	ft_strcat(buffer, " ");
+	do_padding(buffer + ft_strlen(buffer), philo->id + 1, 3);
 	putnbr(buffer + ft_strlen(buffer), philo->id + 1);
 	ft_strcat(buffer, " ");
 	ft_strcat(buffer, message);

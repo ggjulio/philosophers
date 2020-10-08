@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 23:32:16 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/08 20:31:26 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ void			philo_think(t_philo *philo);
 void			usleep_ms(uint64_t ms);
 uint64_t		get_ms_since(struct timeval start);
 uint64_t		get_ms_since_start(void);
+
+/*
+**
+*/
+void			print_message(t_philo *philo, char *message);
+void			print_summary(void);
 
 /*
 ** philo.c

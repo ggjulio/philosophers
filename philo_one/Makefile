@@ -62,7 +62,7 @@ INC =
 vpath %.h $(INC_DIR)
 
 SRC = main.c simulation.c philo.c run_simulation.c philo_action.c
-SRC+= helper_time.c
+SRC+= helper_time.c helper_print.c
 
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRCS_DIR)

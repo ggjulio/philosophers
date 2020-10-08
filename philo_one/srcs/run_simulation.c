@@ -6,11 +6,12 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/07 18:34:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/08 20:31:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
+
 
 int		exit_not_yet(void)
 {
@@ -22,11 +23,11 @@ int		exit_not_yet(void)
 	while (++i < g_simu.nb_philosophers)
 		if (g_simu.philos[i]->action == Action_Died)
 			return (0);
+	if (g_simu.nb_time_each_philosophers_must_eat == -1)
+		return (1);
 	i = -1;
 	while (++i < g_simu.nb_philosophers)
 	{
-		if (g_simu.nb_time_each_philosophers_must_eat == -1)
-			return (1);
 		if (g_simu.philos[i]->nb_meal < g_simu.nb_time_each_philosophers_must_eat)
 			return (1);
 	}
@@ -47,18 +48,6 @@ void			*philo_happy(void *p_philo)
 	return (NULL);
 }
 
-void			print_summary()
-{
-	int i;
-
-	i = -1;
-	ft_printf("\n\nSummary :\n\n");
-	while (++i < g_simu.nb_philosophers)
-	{
-		ft_printf("philo %d -> meals : %d\n", g_simu.philos[i]->id + 1,  g_simu.philos[i]->nb_meal);
-	}
-}
-
 void			update_dead_philosophers(void)
 {
 	int i;
@@ -68,7 +57,7 @@ void			update_dead_philosophers(void)
 	{
 		if (get_ms_since(g_simu.philos[i]->last_meal) > (uint64_t)g_simu.time_to_die)
 		{
-			ft_printf("%4llu %s%d died%s\n", get_ms_since_start(), g_simu.philos[i]->color, g_simu.philos[i]->id + 1, _R);
+			ft_printf("%4lu %s%d died%s\n", get_ms_since_start(), g_simu.philos[i]->color, g_simu.philos[i]->id + 1, _R);
 			g_simu.philos[i]->action = Action_Died;
 			g_simu.died = 1;
 		}

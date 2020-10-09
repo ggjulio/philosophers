@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 13:01:50 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 01:15:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_philo		create_philo(int id, pthread_mutex_t *left_fork,
 	result.left_fork = left_fork;
 	result.right_fork = right_fork;
 	gettimeofday(&(result.last_meal), NULL);
+	pthread_mutex_init(&result.lock, NULL);
 	return (result);
 }
 
@@ -53,6 +54,7 @@ t_philo		*malloc_philo(int id, pthread_mutex_t *left_fork,
 
 void		destroy_philo(t_philo to_destroy)
 {
+	pthread_mutex_destroy(&to_destroy.lock);
 	if (to_destroy.color)
 		free(to_destroy.color);
 }

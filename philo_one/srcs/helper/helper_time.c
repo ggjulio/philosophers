@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:24:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 21:52:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 17:50:42 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ uint64_t	get_ms_since(struct timeval start)
 	gettimeofday(&actual, NULL);
 	diff.tv_sec = actual.tv_sec - start.tv_sec;
 	diff.tv_usec = actual.tv_usec - start.tv_usec;
-	return ((diff.tv_sec * (uint64_t)1000) + (diff.tv_usec / 1000));	
+	return ((diff.tv_sec * (uint64_t)1000) + (diff.tv_usec / 1000));
 }
 
 uint64_t	get_ms_since_start(void)

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 17:07:52 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 17:52:14 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,20 @@ void		print_message(t_philo *philo, char *message)
 	write(STDOUT_FILENO, buffer, ft_strlen(buffer));
 }
 
-const char	*get_emoji_action(t_philo *philo)
-{
-	const char *emoji[7] = {NULL,
-				EMOJI_DEAD, EMOJI_EATING, EMOJI_THINKING, EMOJI_DEAD};
-
-	return (emoji[philo->action]);
-}
-
 void		print_summary(void)
 {
 	int			i;
 	char		buffer[100];
-	const char	summary[100] = "\n\nSummary :\n";
+	const char	summary[100] = "\n\nSummary :\n\n";
+	const char *emoji[7] = {NULL,
+				EMOJI_SLEEPING, EMOJI_EATING, EMOJI_THINKING, EMOJI_DEAD};
 
 	i = -1;
 	write(STDOUT_FILENO, summary, ft_strlen(summary));
 	while (++i < g_simu.nb_philosophers)
 	{
 		buffer[0] = '\0';
-		ft_strcat(buffer, get_emoji_action(g_simu.philos[i]));
+		ft_strcat(buffer, emoji[g_simu.philos[i]->action]);
 		ft_strcat(buffer, "  ");
 		ft_strcat(buffer, g_simu.philos[i]->color);
 		do_padding(buffer + ft_strlen(buffer), g_simu.philos[i]->id + 1, 3);
@@ -94,5 +88,3 @@ void		print_summary(void)
 		write(STDOUT_FILENO, buffer, ft_strlen(buffer));
 	}
 }
-
-// ft_printf("philo %d -> meals : %d\n", g_simu.philos[i]->id + 1,  g_simu.philos[i]->nb_meal);

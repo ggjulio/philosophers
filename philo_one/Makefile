@@ -105,7 +105,7 @@ debug: $(NAME)
 	@lldb $(NAME)
 
 valgrind: $(NAME)
-	@valgrind --leak-check=full --child-silent-after-fork=yes --show-leak-kinds=all --show-reachable=yes --track-origins=yes --log-file=output_valgrind ./$(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --show-reachable=yes --track-origins=yes --log-file=output_valgrind ./$(NAME) 4 1000 100 100  5
 	@printf "$(_BOLD)$(_RED)################################################################$(_R)\n"
 	@printf "$(_BOLD)$(_RED)##########################  $(_GREEN)Valgrind$(_RED)  ##########################$(_R)\n"
 	@printf "$(_BOLD)$(_RED)################################################################$(_R)\n\n"

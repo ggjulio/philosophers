@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 17:03:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:05:07 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	mutex;
 }				t_philo;
 
 typedef struct	s_simulation

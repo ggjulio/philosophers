@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:22:07 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:22:24 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:24:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_action(t_philo *philo, t_action action)
 {
-	if (philo->action != Action_Died)
+	if (philo->action != Action_Died && g_simu.running)
 		philo->action = action;
 }
 

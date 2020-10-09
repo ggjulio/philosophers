@@ -6,25 +6,25 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:22:06 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 20:40:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_one.h"
 
-
-int		exit_not_yet(void)
+int		eval_running(void)
 {
 	int i;
 
 	if (g_simu.running == 0)
-		return (g_simu.running);
+		return (0);
 	if (g_simu.nb_time_each_philosophers_must_eat == -1)
 		return (1);
 	i = -1;
 	while (++i < g_simu.nb_philosophers)
 	{
-		if (g_simu.philos[i]->nb_meal < g_simu.nb_time_each_philosophers_must_eat)
+		if (
+		g_simu.philos[i]->nb_meal < g_simu.nb_time_each_philosophers_must_eat)
 			return (1);
 	}
 	return (0);
@@ -51,7 +51,8 @@ void			update_dead_philosophers(void)
 	i = -1;
 	while (++i < g_simu.nb_philosophers)
 	{
-		if (get_ms_since(g_simu.philos[i]->last_meal) > (uint64_t)g_simu.time_to_die)
+		if (
+	get_ms_since(g_simu.philos[i]->last_meal) > (uint64_t)g_simu.time_to_die)
 		{
 			g_simu.running = 0;
 			g_simu.philos[i]->action = Action_Died;
@@ -67,7 +68,6 @@ void			run_simulation(void)
 	int ret;
 
 	g_simu.running = 1;
-
 	i = 0;
 	while (i < g_simu.nb_philosophers)
 	{
@@ -85,8 +85,7 @@ void			run_simulation(void)
 			ft_printf("Error : philo nb -> %d", i + 1);
 		i += 2;
 	}
-
-	while ((g_simu.running = exit_not_yet()))
+	while ((g_simu.running = eval_running()))
 		update_dead_philosophers();
 	i = -1;
 	while (++i < g_simu.nb_philosophers)

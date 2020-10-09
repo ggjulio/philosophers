@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:22:44 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:37:21 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	do_padding(char *dest, uint64_t n, int pad_size)
 
 void		print_message(t_philo *philo, char *message, int force)
 {
-	char		buffer[100];
+	char		buffer[60];
 	uint64_t	ms;
 
 	if (!g_simu.running && !force)
@@ -66,9 +66,9 @@ void		print_message(t_philo *philo, char *message, int force)
 void		print_summary(void)
 {
 	int			i;
-	char		buffer[100];
-	const char	summary[100] = "\n\nSummary :\n\n";
-	const char *emoji[7] = {NULL,
+	char		buffer[60];
+	const char	summary[] = "\n\nSummary :\n\n";
+	const char	*emoji[5] = {NULL,
 				EMOJI_SLEEPING, EMOJI_EATING, EMOJI_THINKING, EMOJI_DEAD};
 
 	i = -1;

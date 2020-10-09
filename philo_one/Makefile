@@ -95,7 +95,9 @@ $(NAME): $(INC) $(OBJ)
 	@printf "Do $(_RED)$(_BOLD)make debug$(_R) to run tests with lldb\n"
 	@printf "Do $(_YELLOW)$(_BOLD)make valgrind$(_R) to run valgrind $(_MAGENTA)(May have falses positives under OSX)$(_R)\n"
 	@printf "Do $(_GREEN)$(_BOLD)make norminette$(_R) to run norminette on .c and .h files$(_R)\n"
-	@printf "Do $(_GREEN)$(_BLINK)$(_BOLD)make run$(_R)   to run $(NAME)\n\n"
+	@printf "\nUsage:\n"
+	@printf " $(_CYAN)$(_BOLD)./$(NAME) $(_RED)[time_to_die] [time_to_eat] [time_to_sleep]$(_R)\n"
+	@printf " $(_CYAN)$(_BOLD)./$(NAME) $(_RED)[time_to_die] [time_to_eat] [time_to_sleep]$(_GREEN) [number_of_time_each_philosophers_must_eat]$(_R)   \n\n"
 
 run: $(NAME)
 	@./$(NAME)

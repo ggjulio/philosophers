@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 21:35:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 13:01:50 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*assign_color(void)
 			_MAGENTA, _BLUE, _YELLOW, _GREEN, _RED};
 
 	if (i < 13)
-		return (ft_strdup(str[i++]));	
+		return (ft_strdup(str[i++]));
 	return (ft_strdup(_COLOR_DEFAULT));
 }
 

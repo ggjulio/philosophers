@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/08 21:41:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 17:03:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # include "color_shell.h"
 
 #               include "libft.h"
+
+# define EMOJI_DEAD 	"💀"
+# define EMOJI_SLEEPING "😴"
+# define EMOJI_EATING	"😋"
+# define EMOJI_THINKING	"🤔"
 
 typedef	enum	e_action
 {
@@ -55,7 +60,7 @@ typedef struct	s_simulation
 	struct timeval	start_time;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
-	int died;
+	int running;
 }				t_simulation;
 
 /*
@@ -73,6 +78,7 @@ void			run_simulation(void);
 /*
 ** philo_action.c
 */
+void			set_action(t_philo *philo, t_action action);
 void			philo_sleep(t_philo *philo);
 void			philo_eat(t_philo *philo);
 void			philo_think(t_philo *philo);
@@ -85,7 +91,7 @@ uint64_t		get_ms_since(struct timeval start);
 uint64_t		get_ms_since_start(void);
 
 /*
-**
+** helper_print.c
 */
 void			print_message(t_philo *philo, char *message);
 void			print_summary(void);

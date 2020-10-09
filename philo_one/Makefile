@@ -52,7 +52,6 @@ NAME = philo_one
 LIB = 
 SRC_DIR = ./srcs
 INC_DIR = $(shell find . -type d -name "includes")
-INC_DIR+= $(shell find ../lib -type d -name "includes") # TO REMOVE WHEN LIBFT REMOVED
 OBJ_DIR = obj
 
 SRCS_DIR = $(shell find $(SRC_DIR) -type d)
@@ -84,7 +83,7 @@ else
 	CFLAGS += -D LINUX -pthread
 endif
 
-all: install $(NAME)
+all: $(NAME)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)

@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 16:33:22 by juligonz          #+#    #+#             */
-/*   Updated: 2019/10/08 09:11:00 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 00:19:59 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo_one.h"
 
 size_t	ft_strlen(const char *s)
 {

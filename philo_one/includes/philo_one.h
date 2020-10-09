@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:05:07 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:21:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ uint64_t		get_ms_since_start(void);
 /*
 ** helper_print.c
 */
-void			print_message(t_philo *philo, char *message);
+void			print_message(t_philo *philo, char *message, int force);
 void			print_summary(void);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 17:52:14 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:22:44 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ static void	do_padding(char *dest, uint64_t n, int pad_size)
 	dest[i] = '\0';
 }
 
-void		print_message(t_philo *philo, char *message)
+void		print_message(t_philo *philo, char *message, int force)
 {
 	char		buffer[100];
 	uint64_t	ms;
 
-	if (!g_simu.running && philo->action != Action_Died)
+	if (!g_simu.running && !force)
 		return ;
 	ms = get_ms_since_start();
 	do_padding(buffer, ms, 7);

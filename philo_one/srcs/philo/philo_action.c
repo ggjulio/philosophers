@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:22:07 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:03:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:22:24 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,25 @@
 
 void	set_action(t_philo *philo, t_action action)
 {
-	// if (philo->action != Action_Died)
-	// if (g_simu.running)
-	if (philo->action == Action_Died)
-		return ;
-	if (g_simu.running)
+	if (philo->action != Action_Died)
 		philo->action = action;
 }
 
 void	philo_sleep(t_philo *philo)
 {
 	set_action(philo, Action_Sleep);
-	print_message(philo, "is sleeping");
+	print_message(philo, "is sleeping", 0);
 	usleep_ms(g_simu.time_to_sleep);
 }
 
 void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right_fork);
-	print_message(philo, "has taken a fork");
+	print_message(philo, "has taken a fork", 0);
 	pthread_mutex_lock(philo->left_fork);
-	print_message(philo, "has taken a fork");
+	print_message(philo, "has taken a fork", 0);
 	set_action(philo, Action_Eat);
-
-	print_message(philo, "is eating");
+	print_message(philo, "is eating", 0);
 	usleep_ms(g_simu.time_to_eat);
 	gettimeofday(&(philo->last_meal), NULL);
 	philo->nb_meal++;
@@ -48,5 +43,5 @@ void	philo_eat(t_philo *philo)
 void	philo_think(t_philo *philo)
 {
 	set_action(philo, Action_Think);
-	print_message(philo, "is thinking");
+	print_message(philo, "is thinking", 0);
 }

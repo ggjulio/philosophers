@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 16:47:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 18:22:06 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			update_dead_philosophers(void)
 		{
 			g_simu.running = 0;
 			g_simu.philos[i]->action = Action_Died;
-			print_message(g_simu.philos[i], "died");
+			print_message(g_simu.philos[i], "died", 1);
 		}
 	}
 	usleep(1);

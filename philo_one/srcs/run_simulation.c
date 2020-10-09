@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 20:40:54 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/09 23:58:59 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		eval_running(void)
 	return (0);
 }
 
-void			*philo_happy(void *p_philo)
+void	*philo_happy(void *p_philo)
 {
 	t_philo *philo;
 
@@ -44,7 +44,7 @@ void			*philo_happy(void *p_philo)
 	return (NULL);
 }
 
-void			update_dead_philosophers(void)
+void	update_dead_philosophers(void)
 {
 	int i;
 
@@ -62,7 +62,7 @@ void			update_dead_philosophers(void)
 	usleep(1);
 }
 
-void			run_simulation(void)
+void	run_simulation(void)
 {
 	int i;
 	int ret;
@@ -71,18 +71,16 @@ void			run_simulation(void)
 	i = 0;
 	while (i < g_simu.nb_philosophers)
 	{
-		ret = pthread_create(&g_simu.philos[i]->thread, NULL, philo_happy, g_simu.philos[i]);
-		if (ret != 0)
-			ft_printf("Error : philo nb -> %d", i + 1);
+		ret = pthread_create(&g_simu.philos[i]->thread, NULL,
+						philo_happy, g_simu.philos[i]);
 		i += 2;
 	}
 	usleep_ms(1);
 	i = 1;
 	while (i < g_simu.nb_philosophers)
 	{
-		ret = pthread_create(&g_simu.philos[i]->thread, NULL, philo_happy, g_simu.philos[i]);
-		if (ret != 0)
-			ft_printf("Error : philo nb -> %d", i + 1);
+		ret = pthread_create(&g_simu.philos[i]->thread, NULL,
+						philo_happy, g_simu.philos[i]);
 		i += 2;
 	}
 	while ((g_simu.running = eval_running()))

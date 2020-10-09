@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:21:37 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 00:01:39 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@
 # include <stdint.h>
 
 # include "color_shell.h"
-
-#               include "libft.h"
 
 # define EMOJI_DEAD 	"💀"
 # define EMOJI_SLEEPING "😴"
@@ -57,11 +55,11 @@ typedef struct	s_simulation
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int 			nb_time_each_philosophers_must_eat;
+	int				nb_time_each_philosophers_must_eat;
 	struct timeval	start_time;
 	t_philo			**philos;
 	pthread_mutex_t	*forks;
-	int running;
+	int				running;
 }				t_simulation;
 
 /*
@@ -102,10 +100,22 @@ void			print_summary(void);
 */
 t_philo			create_philo(int id, pthread_mutex_t *left_fork,
 					pthread_mutex_t *right_fork);
-t_philo*		malloc_philo(int id, pthread_mutex_t *left_fork,
+t_philo			*malloc_philo(int id, pthread_mutex_t *left_fork,
 					pthread_mutex_t *right_fork);
 void			destroy_philo(t_philo to_destroy);
 void			free_philo(t_philo *to_free);
+
+/*
+** ft
+*/
+char			*ft_strcat(char *dest, const char *src);
+size_t			ft_strlen(const char *s);
+int				ft_atoi(const char *s);
+int				ft_isdigit(int c);
+int				ft_isnumber(char *s);
+int				ft_isspace(int c);
+char			*ft_strcat(char *dest, const char *src);
+char			*ft_strdup(const char *s);
 
 extern t_simulation g_simu;
 

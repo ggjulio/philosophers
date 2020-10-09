@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 13:27:38 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/06 18:23:13 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 00:01:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@
 # define _LIGHT_MAGENTA	"\e[35m"
 # define _LIGHT_CYAN   	"\e[96m"
 # define _WHITE		 	"\e[97m"
-
 
 /*
 ** Inverted, i.e. colored backgrounds

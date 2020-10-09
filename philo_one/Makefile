@@ -49,14 +49,14 @@ UNAME := $(shell uname)
 
 NAME = philo_one
 
-LIB = ft
+LIB = 
 SRC_DIR = ./srcs
 INC_DIR = $(shell find . -type d -name "includes")
 INC_DIR+= $(shell find ../lib -type d -name "includes") # TO REMOVE WHEN LIBFT REMOVED
 OBJ_DIR = obj
 
 SRCS_DIR = $(shell find $(SRC_DIR) -type d)
-LIB_DIR = $(shell find ../lib -maxdepth 1 -type d)
+# LIB_DIR = $(shell find ../lib -maxdepth 1 -type d)
 
 INC =
 vpath %.h $(INC_DIR)
@@ -64,6 +64,8 @@ vpath %.h $(INC_DIR)
 SRC = main.c simulation.c philo.c run_simulation.c philo_action.c
 SRC+= helper_time.c helper_print.c
 
+SRC+= ft_strlen.c ft_strcat.c ft_atoi.c ft_isnumber.c ft_isdigit.c
+SRC+= ft_strdup.c ft_isspace.c
 OBJ = $(addprefix  $(OBJ_DIR)/,$(SRC:%.c=%.o))
 vpath %.c $(SRCS_DIR)
 
@@ -96,8 +98,8 @@ $(NAME): $(INC) $(OBJ)
 	@printf "Do $(_YELLOW)$(_BOLD)make valgrind$(_R) to run valgrind $(_MAGENTA)(May have falses positives under OSX)$(_R)\n"
 	@printf "Do $(_GREEN)$(_BOLD)make norminette$(_R) to run norminette on .c and .h files$(_R)\n"
 	@printf "\nUsage:\n"
-	@printf " $(_CYAN)$(_BOLD)./$(NAME) $(_RED)[time_to_die] [time_to_eat] [time_to_sleep]$(_R)\n"
-	@printf " $(_CYAN)$(_BOLD)./$(NAME) $(_RED)[time_to_die] [time_to_eat] [time_to_sleep]$(_GREEN) [number_of_time_each_philosophers_must_eat]$(_R)   \n\n"
+	@printf " $(_CYAN)$(_BOLD)./$(NAME) $(_RED) [nb_philos] [time_to_die] [time_to_eat] [time_to_sleep]$(_R)\n"
+	@printf " $(_CYAN)$(_BOLD)./$(NAME) $(_RED) [nb_philos] [time_to_die] [time_to_eat] [time_to_sleep]$(_GREEN) [number_of_time_each_philosophers_must_eat]$(_R)   \n\n"
 
 run: $(NAME)
 	@./$(NAME)

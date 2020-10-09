@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 00:01:39 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 00:26:52 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,16 @@ void			*philo_happy(void *philo);
 void			run_simulation(void);
 
 /*
+** philo.c
+*/
+t_philo			create_philo(int id, pthread_mutex_t *left_fork,
+					pthread_mutex_t *right_fork);
+t_philo			*malloc_philo(int id, pthread_mutex_t *left_fork,
+					pthread_mutex_t *right_fork);
+void			destroy_philo(t_philo to_destroy);
+void			free_philo(t_philo *to_free);
+
+/*
 ** philo_action.c
 */
 void			set_action(t_philo *philo, t_action action);
@@ -94,16 +104,6 @@ uint64_t		get_ms_since_start(void);
 */
 void			print_message(t_philo *philo, char *message, int force);
 void			print_summary(void);
-
-/*
-** philo.c
-*/
-t_philo			create_philo(int id, pthread_mutex_t *left_fork,
-					pthread_mutex_t *right_fork);
-t_philo			*malloc_philo(int id, pthread_mutex_t *left_fork,
-					pthread_mutex_t *right_fork);
-void			destroy_philo(t_philo to_destroy);
-void			free_philo(t_philo *to_free);
 
 /*
 ** ft

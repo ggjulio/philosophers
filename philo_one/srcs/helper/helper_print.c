@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 18:37:21 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 19:35:40 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void		print_summary(void)
 	int			i;
 	char		buffer[60];
 	const char	summary[] = "\n\nSummary :\n\n";
-	const char	*emoji[5] = {NULL,
+	const char	*emoji[5] = {EMOJI_NULL,
 				EMOJI_SLEEPING, EMOJI_EATING, EMOJI_THINKING, EMOJI_DEAD};
 
 	i = -1;

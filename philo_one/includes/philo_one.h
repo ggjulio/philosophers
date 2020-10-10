@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 01:07:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 19:35:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include "color_shell.h"
 
+# define EMOJI_NULL 	"❌"
 # define EMOJI_DEAD 	"💀"
 # define EMOJI_SLEEPING "😴"
 # define EMOJI_EATING	"😋"

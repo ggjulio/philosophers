@@ -6,15 +6,37 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:24:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/04 15:28:48 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 00:14:25 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo_one.h"
 
-int main(int ac, char **av)
+t_simulation	g_simu;
+
+int		valid_input(const int ac, char **av)
 {
-	(void)ac;
-	(void)av;
-	ft_printf("ok\n");
+	if ((ac == 5 || (ac == 6 && ft_isnumber(av[5])))
+		&& ft_isnumber(av[1]) && ft_isnumber(av[2])
+		&& ft_isnumber(av[3]) && ft_isnumber(av[4]))
+	{
+		if (ft_atoi(av[1]) <= 1)
+			write(STDOUT_FILENO, "At least 2 philosophers...\n", 27);
+		else
+			return (1);
+	}
+	else
+		write(STDOUT_FILENO, "Bad args\n", 9);
+	return (0);
+}
+
+int		main(const int ac, const char **av)
+{
+	if (valid_input(ac, (char**)av))
+	{
+		g_simu = create_simulation(ac, av);
+		run_simulation();
+		destroy_simulation(g_simu);
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 01:21:34 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 02:06:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ void	update_dead_philosophers(void)
 	i = -1;
 	while (++i < g_simu.nb_philosophers)
 	{
-		pthread_mutex_lock(&g_simu.philos[i]->lock);
 		if (
 	get_ms_since(g_simu.philos[i]->last_meal) > (uint64_t)g_simu.time_to_die)
 		{
+			pthread_mutex_lock(&g_simu.philos[i]->lock);
 			g_simu.running = 0;
 			g_simu.philos[i]->action = Action_Died;
 			print_message(g_simu.philos[i], "died", 1);
+			pthread_mutex_unlock(&g_simu.philos[i]->lock);
 		}
-		pthread_mutex_unlock(&g_simu.philos[i]->lock);
 	}
 	usleep(1);
 }

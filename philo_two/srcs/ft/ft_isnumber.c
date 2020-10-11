@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:11:19 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 23:33:08 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:11:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 int	ft_isnumber(char *s)
 {

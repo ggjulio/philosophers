@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:24:44 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 00:14:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:08:01 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 t_simulation	g_simu;
 

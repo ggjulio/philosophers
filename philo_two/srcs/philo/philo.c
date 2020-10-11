@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 01:15:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:09:09 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 static char	*assign_color(void)
 {
@@ -24,8 +24,7 @@ static char	*assign_color(void)
 	return (ft_strdup(_COLOR_DEFAULT));
 }
 
-t_philo		create_philo(int id, pthread_mutex_t *left_fork,
-				pthread_mutex_t *right_fork)
+t_philo		create_philo(int id)
 {
 	t_philo	result;
 
@@ -34,21 +33,18 @@ t_philo		create_philo(int id, pthread_mutex_t *left_fork,
 	result.nb_meal = 0;
 	result.color = assign_color();
 	result.action = Action_None;
-	result.left_fork = left_fork;
-	result.right_fork = right_fork;
 	gettimeofday(&(result.last_meal), NULL);
 	pthread_mutex_init(&result.lock, NULL);
 	return (result);
 }
 
-t_philo		*malloc_philo(int id, pthread_mutex_t *left_fork,
-				pthread_mutex_t *right_fork)
+t_philo		*malloc_philo(int id)
 {
 	t_philo *result;
 
 	if (!(result = malloc(sizeof(t_philo))))
 		return (NULL);
-	*result = create_philo(id, left_fork, right_fork);
+	*result = create_philo(id);
 	return (result);
 }
 

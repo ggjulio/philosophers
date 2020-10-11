@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_one.h                                        :+:      :+:    :+:   */
+/*   philo_two.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 19:35:13 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:52:58 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_ONE_H
-# define PHILO_ONE_H
+#ifndef PHILO_TWO_H
+# define PHILO_TWO_H
 
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <sys/stat.h>
 # include <stdint.h>
+# include <fcntl.h>
+# include <semaphore.h>
 
 # include "color_shell.h"
 
@@ -27,6 +30,8 @@
 # define EMOJI_SLEEPING "😴"
 # define EMOJI_EATING	"😋"
 # define EMOJI_THINKING	"🤔"
+
+# define SEM_NAME	"/sem_philo_two"
 
 typedef	enum	e_action
 {
@@ -45,8 +50,6 @@ typedef struct	s_philo
 	char			*color;
 	t_action		action;
 	pthread_t		thread;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	lock;
 }				t_philo;
 
@@ -59,7 +62,7 @@ typedef struct	s_simulation
 	int				nb_time_each_philosophers_must_eat;
 	struct timeval	start_time;
 	t_philo			**philos;
-	pthread_mutex_t	*forks;
+	sem_t			*sem;
 	int				running;
 }				t_simulation;
 
@@ -78,10 +81,8 @@ void			run_simulation(void);
 /*
 ** philo.c
 */
-t_philo			create_philo(int id, pthread_mutex_t *left_fork,
-					pthread_mutex_t *right_fork);
-t_philo			*malloc_philo(int id, pthread_mutex_t *left_fork,
-					pthread_mutex_t *right_fork);
+t_philo			create_philo(int id);
+t_philo			*malloc_philo(int id);
 void			destroy_philo(t_philo to_destroy);
 void			free_philo(t_philo *to_free);
 

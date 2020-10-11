@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 23:34:17 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 23:33:36 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:11:41 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 char	*ft_strcat(char *dest, const char *src)
 {

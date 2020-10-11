@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 23:33:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 23:32:04 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:11:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 int		ft_atoi(const char *s)
 {

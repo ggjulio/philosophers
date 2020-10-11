@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:22:07 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 18:56:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 22:12:00 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 void	set_action(t_philo *philo, t_action action)
 {
@@ -27,9 +27,11 @@ void	philo_sleep(t_philo *philo)
 
 void	philo_eat(t_philo *philo)
 {
-	pthread_mutex_lock(philo->right_fork);
+	// pthread_mutex_lock(philo->right_fork);
+	sem_wait(g_simu.sem);
 	print_message(philo, "has taken a fork", 0);
-	pthread_mutex_lock(philo->left_fork);
+	sem_wait(g_simu.sem);
+	// pthread_mutex_lock(philo->left_fork);
 	print_message(philo, "has taken a fork", 0);
 	set_action(philo, Action_Eat);
 	pthread_mutex_lock(&philo->lock);
@@ -38,8 +40,10 @@ void	philo_eat(t_philo *philo)
 	gettimeofday(&(philo->last_meal), NULL);
 	pthread_mutex_unlock(&philo->lock);
 	philo->nb_meal++;
-	pthread_mutex_unlock(philo->right_fork);
-	pthread_mutex_unlock(philo->left_fork);
+	sem_post(g_simu.sem);
+	sem_post(g_simu.sem);
+	// pthread_mutex_unlock(philo->right_fork);
+	// pthread_mutex_unlock(philo->left_fork);
 }
 
 void	philo_think(t_philo *philo)

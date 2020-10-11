@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:24:56 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 17:50:42 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:10:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 void		usleep_ms(uint64_t ms)
 {

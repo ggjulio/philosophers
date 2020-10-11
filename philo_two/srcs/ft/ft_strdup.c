@@ -6,11 +6,11 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 20:23:46 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/09 23:34:18 by juligonz         ###   ########.fr       */
+/*   Updated: 2020/10/10 20:11:44 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_one.h"
+#include "philo_two.h"
 
 char	*ft_strdup(const char *s)
 {

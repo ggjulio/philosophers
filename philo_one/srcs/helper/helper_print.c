@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 19:35:40 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/11 22:14:55 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ void		print_message(t_philo *philo, char *message, int force)
 	ft_strcat(buffer, message);
 	ft_strcat(buffer, "\n");
 	ft_strcat(buffer, _R);
+	pthread_mutex_lock(&philo->lock);
 	write(STDOUT_FILENO, buffer, ft_strlen(buffer));
+	pthread_mutex_unlock(&philo->lock);
 }
 
 void		print_summary(void)

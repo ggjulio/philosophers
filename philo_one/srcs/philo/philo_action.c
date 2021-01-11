@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:22:07 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 18:56:41 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/11 22:11:18 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ void	philo_eat(t_philo *philo)
 	pthread_mutex_lock(philo->left_fork);
 	print_message(philo, "has taken a fork", 0);
 	set_action(philo, Action_Eat);
-	pthread_mutex_lock(&philo->lock);
 	print_message(philo, "is eating", 0);
 	usleep_ms(g_simu.time_to_eat);
 	gettimeofday(&(philo->last_meal), NULL);
-	pthread_mutex_unlock(&philo->lock);
 	philo->nb_meal++;
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);

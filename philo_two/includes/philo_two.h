@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 20:52:58 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/12 04:19:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@
 # define EMOJI_EATING	"😋"
 # define EMOJI_THINKING	"🤔"
 
-# define SEM_NAME	"/sem_philo_two"
+# define SEM_NAME		"/sem_philo_two"
+# define SEM_NAME_LOCK	"/sem_philo_two_LOCK"
 
 typedef	enum	e_action
 {
@@ -50,7 +51,6 @@ typedef struct	s_philo
 	char			*color;
 	t_action		action;
 	pthread_t		thread;
-	pthread_mutex_t	lock;
 }				t_philo;
 
 typedef struct	s_simulation
@@ -63,6 +63,7 @@ typedef struct	s_simulation
 	struct timeval	start_time;
 	t_philo			**philos;
 	sem_t			*sem;
+	sem_t			*lock;
 	int				running;
 }				t_simulation;
 

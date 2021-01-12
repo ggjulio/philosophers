@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 20:09:09 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/12 04:21:31 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_philo		create_philo(int id)
 	result.color = assign_color();
 	result.action = Action_None;
 	gettimeofday(&(result.last_meal), NULL);
-	pthread_mutex_init(&result.lock, NULL);
 	return (result);
 }
 
@@ -50,7 +49,6 @@ t_philo		*malloc_philo(int id)
 
 void		destroy_philo(t_philo to_destroy)
 {
-	pthread_mutex_destroy(&to_destroy.lock);
 	if (to_destroy.color)
 		free(to_destroy.color);
 }

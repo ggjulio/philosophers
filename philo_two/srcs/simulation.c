@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:37:51 by juligonz          #+#    #+#             */
-/*   Updated: 2020/10/10 22:15:25 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/12 04:29:33 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ t_simulation	create_simulation(const int ac, const char **av)
 		result.philos[i] = malloc_philo(i);
 	gettimeofday(&(result.start_time), NULL);
 	sem_unlink(SEM_NAME);
-	result.sem = sem_open(SEM_NAME, O_CREAT | O_RDWR, 0660, result.nb_philosophers);
+	sem_unlink(SEM_NAME_LOCK);
+	result.sem = sem_open(SEM_NAME, O_CREAT | O_RDWR, 0660,
+								result.nb_philosophers);
+	result.lock = sem_open(SEM_NAME_LOCK, O_CREAT | O_RDWR, 0660, 1);
 	return (result);
 }
 
@@ -42,7 +45,8 @@ void			destroy_simulation(t_simulation to_destroy)
 		free_philo(to_destroy.philos[i]);
 	if (to_destroy.philos != NULL)
 		free(to_destroy.philos);
-
 	sem_close(to_destroy.sem);
 	sem_unlink(SEM_NAME);
+	sem_close(to_destroy.lock);
+	sem_unlink(SEM_NAME_LOCK);
 }

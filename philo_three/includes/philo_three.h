@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_two.h                                        :+:      :+:    :+:   */
+/*   philo_three.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 06:04:10 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/12 06:05:12 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_TWO_H
-# define PHILO_TWO_H
+#ifndef PHILO_THREE_H
+# define PHILO_THREE_H
 
 # include <string.h>
 # include <unistd.h>
@@ -31,8 +31,8 @@
 # define EMOJI_EATING	"😋"
 # define EMOJI_THINKING	"🤔"
 
-# define SEM_NAME		"/sem_philo_two"
-# define SEM_NAME_LOCK	"/sem_philo_two_lock"
+# define SEM_NAME		"/sem_philo_three"
+# define SEM_NAME_LOCK	"/sem_philo_three_lock"
 
 typedef	enum	e_action
 {

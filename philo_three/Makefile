@@ -47,7 +47,7 @@ _IWHITE   =\e[107m
 
 UNAME := $(shell uname)
 
-NAME = philo_two
+NAME = philo_three
 
 LIB = 
 SRC_DIR = ./srcs

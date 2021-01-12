@@ -55,7 +55,6 @@ INC_DIR = $(shell find . -type d -name "includes")
 OBJ_DIR = obj
 
 SRCS_DIR = $(shell find $(SRC_DIR) -type d)
-# LIB_DIR = $(shell find ../lib -maxdepth 1 -type d)
 
 INC =
 vpath %.h $(INC_DIR)
@@ -144,21 +143,7 @@ fclean: clean
 
 re: fclean all
 
-install: 
-	@printf "$(_GREEN)Install libft.a ...$(_R)\n"
-	@make -s -C ../lib/libft/  > /dev/null
-	@printf "$(_RED)done ...$(_R)\n"
-
-fclean-install:
-	@printf "$(_YELLOW)fclean-install libft.a :$(_R)\n"
-	@printf "$(_RED)   Removed :$(_MAGENTA) ../lib/libft/libft.a\n"
-	@make fclean -s -C ../lib/libft/ > /dev/null
-
-
-re-install: fclean-install install
-
-
-.PHONY: all run debug valgrind norminette bonus show clean fclean re install re-install fclean-install
+.PHONY: all run debug valgrind norminette bonus show clean fclean re
 
 #******************************************************************************#
 #                                  REMINDER                                    #  

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/13 07:41:30 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 08:37:32 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,11 @@ t_philo			create_philo(int id);
 t_philo			*malloc_philo(int id);
 void			destroy_philo(t_philo to_destroy);
 void			free_philo(t_philo *to_free);
+
+/*
+** philo_spawn.c
+*/
+void			spawn_philo(int id);
 
 /*
 ** philo_action.c

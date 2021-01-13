@@ -6,87 +6,65 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 06:06:32 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 08:37:13 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-int		eval_running(void)
+void	*wait_dead(void *useless)
 {
-	int i;
-
-	if (g_simu.running == 0)
-		return (0);
-	if (g_simu.nb_time_each_philosophers_must_eat == -1)
-		return (1);
-	i = -1;
-	while (++i < g_simu.nb_philosophers)
-	{
-		if (
-		g_simu.philos[i]->nb_meal < g_simu.nb_time_each_philosophers_must_eat)
-			return (1);
-	}
-	return (0);
-}
-
-void	*philo_happy(void *p_philo)
-{
-	t_philo *philo;
-
-	philo = p_philo;
-	while (g_simu.running)
-	{
-		philo_eat(philo);
-		philo_sleep(philo);
-		philo_think(philo);
-	}
+	(void)useless;
+	sem_wait(g_simu.someone_died);
+	g_simu.running = 0;
 	return (NULL);
 }
 
-void	update_dead_philosophers(void)
+void	*wait_nb_meals_reached(void *useless)
 {
-	int i;
+	int nb_philos_reached_nb_meals;
 
-	i = -1;
-	while (++i < g_simu.nb_philosophers)
+	(void)useless;
+	nb_philos_reached_nb_meals = 0;
+	while (g_simu.running)
 	{
-		if (
-	get_ms_since(g_simu.philos[i]->last_meal) > (uint64_t)g_simu.time_to_die)
-		{
-			g_simu.running = 0;
-			g_simu.philos[i]->action = Action_Died;
-			print_message(g_simu.philos[i], "died", 1);
-		}
+		sem_wait(g_simu.meals_done);
+		nb_philos_reached_nb_meals++;
+		if (nb_philos_reached_nb_meals == g_simu.nb_philosophers)
+			break ;
+		usleep(1);
 	}
-	usleep(1);
+	g_simu.running = 0;
+	return (NULL);
 }
+
+/*
+** At the end I post to unlock threads and avoid still reachable memory.
+** it's useless but, I don't want to be graded 0 by another of my peers.
+*/
 
 void	run_simulation(void)
 {
-	int i;
-	int ret;
+	int			id;
+	pthread_t	wait_dead_thread;
+	pthread_t	wait_nb_meals_reached_thread;
 
+	id = 0;
 	g_simu.running = 1;
-	i = 0;
-	while (i < g_simu.nb_philosophers)
+	while (id < g_simu.nb_philosophers)
+		spawn_philo(id++);
+	pthread_create(&wait_dead_thread, NULL, wait_dead, NULL);
+	pthread_create(&wait_nb_meals_reached_thread,
+					NULL, wait_nb_meals_reached, NULL);
+	pthread_detach(wait_dead_thread);
+	pthread_detach(wait_nb_meals_reached_thread);
+	while (g_simu.running)
+		usleep(1);
+	id = 0;
+	while (id < g_simu.nb_philosophers)
 	{
-		ret = pthread_create(&g_simu.philos[i]->thread, NULL,
-						philo_happy, g_simu.philos[i]);
-		i += 2;
+		kill(g_simu.philos[id++]->pid, SIGKILL);
+		sem_post(g_simu.meals_done);
 	}
-	usleep_ms(1);
-	i = 1;
-	while (i < g_simu.nb_philosophers)
-	{
-		ret = pthread_create(&g_simu.philos[i]->thread, NULL,
-						philo_happy, g_simu.philos[i]);
-		i += 2;
-	}
-	while ((g_simu.running = eval_running()))
-		update_dead_philosophers();
-	i = -1;
-	while (++i < g_simu.nb_philosophers)
-		pthread_join(g_simu.philos[i]->thread, NULL);
-	print_summary();
+	sem_post(g_simu.someone_died);
 }

@@ -60,7 +60,7 @@ INC =
 vpath %.h $(INC_DIR)
 
 SRC = main.c simulation.c philo.c run_simulation.c philo_action.c
-SRC+= helper_time.c helper_print.c
+SRC+= helper_time.c helper_print.c philo_spawn.c
 
 SRC+= ft_strlen.c ft_strcat.c ft_atoi.c ft_isnumber.c ft_isdigit.c
 SRC+= ft_strdup.c ft_isspace.c

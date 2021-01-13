@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/08 20:30:00 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/11 22:14:55 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 09:21:03 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ static void	do_padding(char *dest, uint64_t n, int pad_size)
 		dest[i++] = ' ';
 	dest[i] = '\0';
 }
+
+/*
+** Useless to protect write, because, there is only one syscall to write.
+** But the correction ask to check
+** if we're using a mutex to protect our output, so... ¯\_(ツ)_/¯
+*/
 
 void		print_message(t_philo *philo, char *message, int force)
 {

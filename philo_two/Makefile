@@ -113,6 +113,13 @@ valgrind: $(NAME)
 	@printf "$(_BOLD)$(_RED)################################################################$(_R)\n\n"
 	@cat output_valgrind
 
+valgrind2: $(NAME)
+	@valgrind --leak-check=full --show-leak-kinds=all --show-reachable=yes --track-origins=yes --log-file=output_valgrind ./$(NAME) 4 310 200 200
+	@printf "$(_BOLD)$(_RED)################################################################$(_R)\n"
+	@printf "$(_BOLD)$(_RED)##########################  $(_GREEN)Valgrind$(_RED)  ##########################$(_R)\n"
+	@printf "$(_BOLD)$(_RED)################################################################$(_R)\n\n"
+	@cat output_valgrind
+
 norminette:
 	norminette $(INC_DIR) $(SRC_DIR)
 

@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/05 17:34:49 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 03:52:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 09:01:08 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,7 @@ void	run_simulation(void)
 	{
 		ret = pthread_create(&g_simu.philos[i]->thread, NULL,
 						philo_happy, g_simu.philos[i]);
-		i += 2;
-	}
-	usleep_ms(1);
-	i = 1;
-	while (i < g_simu.nb_philosophers)
-	{
-		ret = pthread_create(&g_simu.philos[i]->thread, NULL,
-						philo_happy, g_simu.philos[i]);
-		i += 2;
+		i++;
 	}
 	while ((g_simu.running = eval_running()))
 		update_dead_philosophers();

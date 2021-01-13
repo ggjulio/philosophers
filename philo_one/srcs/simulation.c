@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:37:51 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/13 11:13:46 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 11:21:37 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ t_simulation	create_simulation(const int ac, const char **av)
 	result.philos[0]->left_fork =
 		result.philos[result.nb_philosophers - 1]->right_fork;
 	gettimeofday(&(result.start_time), NULL);
-	pthread_mutex_init(&result.lock, NULL);
 	return (result);
 }
 
@@ -55,5 +54,4 @@ void			destroy_simulation(t_simulation to_destroy)
 		free(to_destroy.philos);
 	if (to_destroy.forks != NULL)
 		free(to_destroy.forks);
-	pthread_mutex_destroy(&to_destroy.lock);
 }

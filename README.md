@@ -23,11 +23,11 @@ https://cboard.cprogramming.com/c-programming/151304-do-i-need-mutex-if-im-only-
 http://www.alexonlinux.com/do-you-need-mutex-to-protect-int
 
 #### Disclaimer
-The goal's project is not really to solve the dinning philosophers problem.
+The goal's project is not to solve the dinning philosophers problem.
 Because of theses rules in the subject :
 
-- Philosophers don’t speak with each other.
-- Philosophers don’t know when another philosopher is about to die.
+• Philosophers don’t speak with each other.
+• Philosophers don’t know when another philosopher is about to die.
 
 We can't avoid any death for ever. A death will occur sooner or later 
 

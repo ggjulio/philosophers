@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:31:42 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 06:06:26 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 07:52:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ t_philo		create_philo(int id)
 	result.id = id;
 	result.nb_meal = 0;
 	result.color = assign_color();
-	result.action = Action_None;
 	gettimeofday(&(result.last_meal), NULL);
 	return (result);
 }

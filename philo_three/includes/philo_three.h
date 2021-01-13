@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 15:32:23 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 06:05:12 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 07:41:30 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,19 @@
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <sys/types.h>
 # include <sys/stat.h>
 # include <stdint.h>
 # include <fcntl.h>
 # include <semaphore.h>
+# include <signal.h>
 
 # include "color_shell.h"
 
-# define EMOJI_NULL 	"❌"
-# define EMOJI_DEAD 	"💀"
-# define EMOJI_SLEEPING "😴"
-# define EMOJI_EATING	"😋"
-# define EMOJI_THINKING	"🤔"
-
-# define SEM_NAME		"/sem_philo_three"
-# define SEM_NAME_LOCK	"/sem_philo_three_lock"
+# define SEM_NAME			"/sem_philo_three_forks"
+# define SEM_NAME_LOCK		"/sem_philo_three_lock"
+# define SEM_NAME_DIED		"/sem_philo_three_died"
+# define SEM_NAME_MEALS		"/sem_philo_three_meals"
 
 typedef	enum	e_action
 {
@@ -49,12 +47,13 @@ typedef struct	s_philo
 	int				nb_meal;
 	struct timeval	last_meal;
 	char			*color;
-	t_action		action;
 	pthread_t		thread;
+	pid_t			pid;
 }				t_philo;
 
 typedef struct	s_simulation
 {
+	int				running;
 	int				nb_philosophers;
 	int				time_to_die;
 	int				time_to_eat;
@@ -62,9 +61,10 @@ typedef struct	s_simulation
 	int				nb_time_each_philosophers_must_eat;
 	struct timeval	start_time;
 	t_philo			**philos;
-	sem_t			*sem;
+	sem_t			*forks;
 	sem_t			*lock;
-	int				running;
+	sem_t			*someone_died;
+	sem_t			*meals_done;
 }				t_simulation;
 
 /*
@@ -76,7 +76,6 @@ void			destroy_simulation(t_simulation to_destroy);
 /*
 ** run_simulation.c
 */
-void			*philo_happy(void *philo);
 void			run_simulation(void);
 
 /*
@@ -90,7 +89,7 @@ void			free_philo(t_philo *to_free);
 /*
 ** philo_action.c
 */
-void			set_action(t_philo *philo, t_action action);
+void			*philo_happy(void *philo);
 void			philo_sleep(t_philo *philo);
 void			philo_eat(t_philo *philo);
 void			philo_think(t_philo *philo);
@@ -105,8 +104,7 @@ uint64_t		get_ms_since_start(void);
 /*
 ** helper_print.c
 */
-void			print_message(t_philo *philo, char *message, int force);
-void			print_summary(void);
+void			print_message(t_philo *philo, char *message);
 
 /*
 ** ft

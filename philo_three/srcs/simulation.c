@@ -6,7 +6,7 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/04 16:37:51 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 06:06:36 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 06:44:54 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@ t_simulation	create_simulation(const int ac, const char **av)
 	gettimeofday(&(result.start_time), NULL);
 	sem_unlink(SEM_NAME);
 	sem_unlink(SEM_NAME_LOCK);
-	result.sem = sem_open(SEM_NAME, O_CREAT | O_RDWR, 0660,
-								result.nb_philosophers);
+	sem_unlink(SEM_NAME_DIED);
+	sem_unlink(SEM_NAME_MEALS);
+	result.forks =
+		sem_open(SEM_NAME, O_CREAT | O_RDWR, 0660, result.nb_philosophers);
 	result.lock = sem_open(SEM_NAME_LOCK, O_CREAT | O_RDWR, 0660, 1);
+	result.someone_died = sem_open(SEM_NAME_DIED, O_CREAT | O_RDWR, 0660, 0);
+	result.meals_done = sem_open(SEM_NAME_MEALS, O_CREAT | O_RDWR, 0660, 0);
 	return (result);
 }
 
@@ -45,8 +49,12 @@ void			destroy_simulation(t_simulation to_destroy)
 		free_philo(to_destroy.philos[i]);
 	if (to_destroy.philos != NULL)
 		free(to_destroy.philos);
-	sem_close(to_destroy.sem);
+	sem_close(to_destroy.forks);
 	sem_unlink(SEM_NAME);
 	sem_close(to_destroy.lock);
 	sem_unlink(SEM_NAME_LOCK);
+	sem_close(to_destroy.someone_died);
+	sem_unlink(SEM_NAME_DIED);
+	sem_close(to_destroy.meals_done);
+	sem_unlink(SEM_NAME_MEALS);
 }

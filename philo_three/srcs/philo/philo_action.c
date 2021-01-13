@@ -6,44 +6,49 @@
 /*   By: juligonz <juligonz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 15:22:07 by juligonz          #+#    #+#             */
-/*   Updated: 2021/01/12 06:06:22 by juligonz         ###   ########.fr       */
+/*   Updated: 2021/01/13 07:41:16 by juligonz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_three.h"
 
-void	set_action(t_philo *philo, t_action action)
+void	*philo_happy(void *p_philo)
 {
-	if (philo->action != Action_Died && g_simu.running)
-		philo->action = action;
+	t_philo *philo;
+
+	philo = p_philo;
+	while (42)
+	{
+		philo_eat(philo);
+		philo_sleep(philo);
+		philo_think(philo);
+	}
+	return (NULL);
 }
 
 void	philo_sleep(t_philo *philo)
 {
-	set_action(philo, Action_Sleep);
-	print_message(philo, "is sleeping", 0);
+	print_message(philo, "is sleeping");
 	usleep_ms(g_simu.time_to_sleep);
 }
 
 void	philo_eat(t_philo *philo)
 {
 	sem_wait(g_simu.lock);
-	sem_wait(g_simu.sem);
-	print_message(philo, "has taken a fork", 0);
-	sem_wait(g_simu.sem);
-	print_message(philo, "has taken a fork", 0);
+	sem_wait(g_simu.forks);
+	print_message(philo, "has taken a fork");
+	sem_wait(g_simu.forks);
+	print_message(philo, "has taken a fork");
 	sem_post(g_simu.lock);
-	set_action(philo, Action_Eat);
-	print_message(philo, "is eating", 0);
+	print_message(philo, "is eating");
 	usleep_ms(g_simu.time_to_eat);
 	gettimeofday(&(philo->last_meal), NULL);
 	philo->nb_meal++;
-	sem_post(g_simu.sem);
-	sem_post(g_simu.sem);
+	sem_post(g_simu.forks);
+	sem_post(g_simu.forks);
 }
 
 void	philo_think(t_philo *philo)
 {
-	set_action(philo, Action_Think);
-	print_message(philo, "is thinking", 0);
+	print_message(philo, "is thinking");
 }

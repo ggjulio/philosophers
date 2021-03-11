@@ -23,7 +23,7 @@ https://cboard.cprogramming.com/c-programming/151304-do-i-need-mutex-if-im-only-
 http://www.alexonlinux.com/do-you-need-mutex-to-protect-int
 
 #### Disclaimer
-The goal's project is not to solve the dinning philosophers problem.
+The goal's project was not really to solve the dinning philosophers problem.
 Because of theses rules in the subject :
 
 • Philosophers don’t speak with each other.
@@ -31,8 +31,6 @@ Because of theses rules in the subject :
 We can't avoid any death for ever. A death will occur sooner or later 
 
 it may occur when a philo who just finished eating, eat a second time. Causing another philo to die.
-
-Using a starving state to prioritize firsts threads/processes who asked for the ressource can be considered as breaking thoses rules, thus cheating.
 
 So death may occur when philosophers go out of sync.
 It heavily depend on CPU workload, and how the OS schedule thoses threads and processes.

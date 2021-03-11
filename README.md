@@ -45,5 +45,6 @@ Most of OS just ignore `usleep(0)`, causing your thread/process to continue.
 Leaving very few chances for other threads/processes to gain access to the ressource.
 (In other words, philo eat two times in a row...)
 
-Also we can't do chandy/misra algorithm for the same reason (`Philosophers don’t speak with each other`)
+Also I was not able to do [chandy/misra](https://en.wikipedia.org/wiki/Dining_philosophers_problem#Chandy/Misra_solution) algorithm for the same reason (`Philosophers don’t speak with each other`)
+The rule will probably be misinterpreted during evaluation.
 

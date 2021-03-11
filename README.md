@@ -27,7 +27,6 @@ The goal's project is not to solve the dinning philosophers problem.
 Because of theses rules in the subject :
 
 • Philosophers don’t speak with each other.
-• Philosophers don’t know when another philosopher is about to die.
 
 We can't avoid any death for ever. A death will occur sooner or later 
 
@@ -45,4 +44,6 @@ Also using a sleeping time of 0 is an undetermined behaviour. It relies on the O
 Most of OS just ignore `usleep(0)`, causing your thread/process to continue.
 Leaving very few chances for other threads/processes to gain access to the ressource.
 (In other words, philo eat two times in a row...)
+
+Also we can't do chandy/misra algorithm for the same reason (`Philosophers don’t speak with each other`)
 

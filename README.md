@@ -38,7 +38,7 @@ It heavily depend on CPU workload, and how the OS schedule thoses threads and pr
 It is mitigated by the sleeping time. However, when the sleeping time is too low.
 Philosophers can go out of sync more often, causing some philosophers to starve and die.
 
-Also using a sleeping time of 0 is an undetermined behaviour. It relies on the OS implementation.
+Also using a sleeping time of 0 is an undefined behaviour. It relies on the OS implementation.
 Most of OS just ignore `usleep(0)`, causing your thread/process to continue.
 Leaving very few chances for other threads/processes to gain access to the ressource.
 (In other words, philo eat two times in a row...)
